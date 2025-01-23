@@ -3,7 +3,7 @@
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
     
     <div class="drawer-content">
-      <header>
+      <header class="relative z-50">
         <!-- Small screen header -->
         <div class="lg:hidden flex justify-between items-center px-4 py-2">
           <div class="flex-1">
@@ -28,8 +28,16 @@
         <div class="hidden lg:flex justify-between items-center px-4 py-2">
           <div class="flex-1"></div>
           <ul class="menu menu-horizontal bg-base-200 rounded-box">
-            <li><NuxtLink to="/">Current Books</NuxtLink></li>
-            <li><NuxtLink to="/suggest">Add a Book</NuxtLink></li>
+            <li>
+              <NuxtLink to="/" :class="{ 'active': route.path === '/' }">
+                Current Books
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/suggest" :class="{ 'active': route.path === '/suggest' }">
+                Add a Book
+              </NuxtLink>
+            </li>
           </ul>
           <div class="flex-1 flex justify-end">
             <select class="theme-select select select-bordered select-sm">
@@ -43,17 +51,25 @@
         </div>
       </header>
 
-      <div class="h-full">
+      <div class="h-full relative z-0">
         <NuxtPage class="h-full grid align-middle"/>
       </div>
     </div>
 
     <!-- Drawer side menu for small screens -->
-    <div class="drawer-side">
+    <div class="drawer-side z-[100]">
       <label for="nav-drawer" class="drawer-overlay"></label>
-      <ul class="menu p-4 w-80 min-h-full bg-base-200">
-        <li><NuxtLink to="/">Current Books</NuxtLink></li>
-        <li><NuxtLink to="/suggest">Add a Book</NuxtLink></li>
+      <ul class="menu p-4 w-80 min-h-full bg-secondary">
+        <li>
+          <NuxtLink to="/" :class="{ 'active': route.path === '/' }">
+            Current Books
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/suggest" :class="{ 'active': route.path === '/suggest' }">
+            Add a Book
+          </NuxtLink>
+        </li>
       </ul>
     </div>
   </div>
@@ -61,7 +77,9 @@
 
 <script setup lang="ts">
 import { useThemes } from '../composables/useThemes'
+import { useRoute } from '#app'
 
+const route = useRoute()
 const { availableThemes } = useThemes()
 
 // Add theme switcher functionality
