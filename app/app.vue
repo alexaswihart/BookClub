@@ -14,7 +14,7 @@
             </label>
           </div>
           <div class="flex-1 flex justify-end">
-            <select data-choose-theme class="select select-bordered select-sm">
+            <select class="theme-select select select-bordered select-sm">
               <option v-for="theme in availableThemes" 
                       :key="theme" 
                       :value="theme">
@@ -32,7 +32,7 @@
             <li><NuxtLink to="/suggest">Add a Book</NuxtLink></li>
           </ul>
           <div class="flex-1 flex justify-end">
-            <select data-choose-theme class="select select-bordered select-sm">
+            <select class="theme-select select select-bordered select-sm">
               <option v-for="theme in availableThemes" 
                       :key="theme" 
                       :value="theme">
@@ -67,22 +67,22 @@ const { availableThemes } = useThemes()
 // Add theme switcher functionality
 onMounted(() => {
   const themeValues = localStorage.getItem('theme')
-  const themeSelect = document.querySelector('[data-choose-theme]') as HTMLSelectElement
+  const themeSelects = document.querySelectorAll('.theme-select') as NodeListOf<HTMLSelectElement>
   
-  if (themeValues) {
-    document.documentElement.setAttribute('data-theme', themeValues)
-    if (themeSelect) {
-      themeSelect.value = themeValues
+  themeSelects.forEach(select => {
+    if (themeValues) {
+      document.documentElement.setAttribute('data-theme', themeValues)
+      select.value = themeValues
     }
-  }
 
-  if (themeSelect) {
-    themeSelect.addEventListener('change', (e) => {
+    select.addEventListener('change', (e) => {
       const theme = (e.target as HTMLSelectElement).value
       document.documentElement.setAttribute('data-theme', theme)
       localStorage.setItem('theme', theme)
+      // Update all selectors
+      themeSelects.forEach(s => s.value = theme)
     })
-  }
+  })
 })
 </script>
 
