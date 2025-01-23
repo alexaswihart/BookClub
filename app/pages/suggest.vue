@@ -2,30 +2,35 @@
   <div class="w-1/2 m-auto flex justify-center">
     SUGGEST NEW BOOKS
   </div>
-  <UCard class="w-1/2 m-auto max-w-96">
-    <UForm :validate="validate" :state="state" @submit="onSubmit">
-
-      <UFormGroup size="md" label="Title" name="title">
-        <UInput v-model="state.title" />
-      </UFormGroup>
-
-      <UFormGroup size="md" label="Author" name="author">
-        <UInput v-model="state.author" />
-      </UFormGroup>
-
-      <UFormGroup size="md" label="Genre" name="genre">
-        <UCheckbox v-model="state.isRomance" name="Romance" label="Romance" />
-        <UCheckbox v-model="state.isSciFi" name="SciFi" label="Sci-fi/Dystopia" />
-        <UCheckbox v-model="state.isMystery" name="Mystery" label="Mystery/Thriller" />
-        <UCheckbox v-model="state.isContemporary" name="Contemporary" label="Contemporary" />
-        <UCheckbox v-model="state.isFantasy" name="Fantasy" label="Fantasy" />
-      </UFormGroup>
-
-      <UButton type="submit" class="mt-2">
-        Submit
-      </UButton>
-    </UForm>
-  </UCard>
+  <div class="flex justify-center">
+    <div class="card card-compact bg-base-100 w-96 shadow-xl">
+      <figure>
+   <!--      <UForm :validate="validate" :state="state" @submit="onSubmit">
+          <UFormGroup size="md" label="Title" name="title">
+            <UInput v-model="state.title" />
+          </UFormGroup>
+          <UFormGroup size="md" label="Author" name="author">
+            <UInput v-model="state.author" />
+          </UFormGroup>
+          <UFormGroup size="md" label="Genre" name="genre">
+            <UCheckbox v-model="state.isRomance" name="Romance" label="Romance" />
+            <UCheckbox v-model="state.isSciFi" name="SciFi" label="Sci-fi/Dystopia" />
+            <UCheckbox v-model="state.isMystery" name="Mystery" label="Mystery/Thriller" />
+            <UCheckbox v-model="state.isContemporary" name="Contemporary" label="Contemporary" />
+            <UCheckbox v-model="state.isFantasy" name="Fantasy" label="Fantasy" />
+          </UFormGroup>       
+        </UForm> -->
+        <input type="text" placeholder="Title" class="input input-bordered w-full max-w-xs" />
+        <input type="text" placeholder="Author" class="input input-bordered w-full max-w-xs" />
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title"></h2>
+        <div class="card-actions justify-end">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>

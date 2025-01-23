@@ -3,7 +3,7 @@ import { defineNuxtConfig } from "nuxt/config";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // https://nuxt.com/modules
-  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui'],
+  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui', '@nuxtjs/tailwindcss'],
 
   // https://devtools.nuxt.com
   devtools: { enabled: true },
@@ -29,6 +29,15 @@ export default defineNuxtConfig({
       stylistic: {
         quotes: 'single',
       },
+    },
+  },
+
+  css: ['./assets/css/main.css'],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 })
